@@ -253,8 +253,32 @@ summary::-webkit-details-marker{display:none}
 details[open] summary{border-bottom:1px solid var(--line)}
 details .a{padding:10px 0 14px;color:var(--ink-2);font-size:14px}
 
+.print-only{display:none}
 .caption{font-size:12px;color:var(--muted);margin-top:8px}
 footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:12.5px}
+
+@page{size:A4;margin:12mm}
+@media print{
+  :root,:root[data-theme="dark"]{color-scheme:light}
+  html,body{background:#FFFFFF!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .toc{display:none}
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .wrap{max-width:none;padding-inline:0}
+  .masthead{padding-block:8px 24px}
+  .scroll{overflow:visible}
+  .win,.mini,.steps>li,.legend li,tr,details,.note,.modecard,.tasks li,figure{break-inside:avoid}
+  h2,h3,.sec-no,.intro{break-after:avoid}
+  #overview,#first,#files,#model,#tools,#projects,#artifacts,#settings,#manage,#modes,#rules{break-before:page}
+  section+section{border-top:0}
+  .legend a,.tasks a span{color:var(--muted)}
+  a{text-decoration:none}
+  .screen-only,.legend a{display:none}
+  .print-only{display:inline}
+  .legend{margin-top:14px}
+  .legend li{padding:3px 10px}
+  .legend span.d{line-height:1.55}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -292,10 +316,10 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
 
 <div class="wrap">
   <header class="masthead">
-    <div class="eyebrow">レイテクソリューションズ株式会社 ／ 社内向け手順書</div>
+    <div class="eyebrow">作成：レイテクソリューションズ株式会社</div>
     <h1><span class="spark">✳︎</span> Claude デスクトップアプリ<br>画面の見方と使い方</h1>
     <p class="lede">Claude（クロード）のデスクトップアプリを、実際の画面に近い図と「何をどの順に押すか」で説明する手順書です。IT に詳しくない方でも、やりたいことから逆引きできるようにまとめています。</p>
-    <div class="meta"><span>対象：Mac／Windows 版デスクトップアプリ</span><span>作成日：2026年9月22日</span><span>図は再現イメージです</span></div>
+    <div class="meta"><span>対象：Mac／Windows 版デスクトップアプリ</span><span>2026年9月時点の情報</span><span>図は説明用の再現イメージです</span></div>
   </header>
 
   <div class="layout">
@@ -342,7 +366,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       <section id="overview">
         <div class="sec-no">01</div>
         <h2>画面の全体像</h2>
-        <p class="intro">アプリを起動すると、下のような画面が開きます。図の <b>番号</b> または下の説明をクリックすると、対応する場所が強調されます。</p>
+        <p class="intro">アプリを起動すると、下のような画面が開きます。<span class="screen-only">図の <b>番号</b> または下の説明をクリックすると、対応する場所が強調されます。</span><span class="print-only">図の番号と下の説明が対応しています。</span></p>
 
         <div class="scroll">
           <div class="win full" role="img" aria-label="Claudeデスクトップアプリのホーム画面の再現図">
@@ -365,19 +389,19 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
                 <div class="label">最近の項目 <button class="pin" data-k="7" aria-label="7 最近のチャット">7</button></div>
                 <div class="hl-target" data-k="7" style="display:grid;gap:1px">
                   <div class="recent cur">運転資金の考え方を整理</div>
-                  <div class="recent">候補者面談の質問リスト</div>
-                  <div class="recent">顧客向けメール下書き</div>
+                  <div class="recent">会議メモの要約</div>
+                  <div class="recent">取引先へのお礼メール</div>
                   <div class="recent">週次レポートの表を作成</div>
                 </div>
                 <div class="acct hl-target" data-k="8">
-                  <span class="avatar">吉</span>
-                  <span>吉田 有那<small>Team プラン</small></span>
+                  <span class="avatar">山</span>
+                  <span>山田 太郎<small>Team プラン</small></span>
                   <button class="pin" data-k="8" aria-label="8 アカウントメニュー" style="margin-left:auto">8</button>
                 </div>
               </aside>
               <div class="main">
                 <span class="ghost hl-target" data-k="14"><svg class="i"><use href="#i-ghost"/></svg><button class="pin" data-k="14" aria-label="14 シークレットチャット">14</button></span>
-                <div class="greet"><svg class="i spark"><use href="#i-spark"/></svg>こんばんは、有那さん</div>
+                <div class="greet"><svg class="i spark"><use href="#i-spark"/></svg>こんにちは、太郎さん</div>
                 <div class="composer">
                   <div class="ph hl-target" data-k="9">今日はどのようなお手伝いをしましょうか？ <button class="pin" data-k="9" aria-label="9 入力欄">9</button></div>
                   <div class="row">
@@ -478,13 +502,13 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
               <div class="mi"><svg class="i"><use href="#i-drive"/></svg>Google ドライブから追加</div>
             </div>
             <div class="composer">
-              <div class="row" style="gap:8px"><span class="artcard" style="padding:6px 8px"><span class="ico" style="width:24px;height:24px"><svg class="i"><use href="#i-doc"/></svg></span><span>候補者紹介資料.pdf<small>PDF・12ページ</small></span></span></div>
-              <div class="typed">この資料の要点を5つにまとめ、確認すべき質問も挙げて</div>
+              <div class="row" style="gap:8px"><span class="artcard" style="padding:6px 8px"><span class="ico" style="width:24px;height:24px"><svg class="i"><use href="#i-doc"/></svg></span><span>提案書_草案.pdf<small>PDF・12ページ</small></span></span></div>
+              <div class="typed">この資料の要点を5つにまとめ、確認すべき点も挙げて</div>
               <div class="row"><span class="cbtn on"><svg class="i"><use href="#i-plus"/></svg></span><span class="model">Opus 5.5 <svg class="i"><use href="#i-down"/></svg></span><span class="send"><svg class="i"><use href="#i-up"/></svg></span></div>
             </div>
           </div>
         </div>
-        <div class="note warn"><strong>注意</strong>候補者や顧客の氏名・連絡先・機微な数値は、必要がなければ伏せてから渡してください。社内ルールで扱えない情報は入力しないでください。</div>
+        <div class="note warn"><strong>注意</strong>お客様・取引先の氏名や連絡先、機密性の高い数値は、必要がなければ伏せてから渡してください。貴社の情報管理ルールで扱えない情報は入力しないでください。</div>
       </section>
 
       <!-- 4 -->
@@ -557,7 +581,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
         <div class="twocol">
           <ol class="steps">
             <li><div><b>サイドバーの「プロジェクト」→「新規プロジェクト」</b></div></li>
-            <li><div><b>名前と説明を入れて作成</b><small>例：「会計8週間プログラム」「A社 採用支援」</small></div></li>
+            <li><div><b>名前と説明を入れて作成</b><small>例：「新人研修プログラム」「A社 提案準備」</small></div></li>
             <li><div><b>「指示」を設定する</b><small>このプロジェクトでの Claude の役割や、守ってほしいルールを書きます。<br>例：「経営者向けに、専門用語には必ず補足を付けて説明する」</small></div></li>
             <li><div><b>「ファイル」に資料を追加する</b><small>教材・過去資料・テンプレートなど。全チャットで参照されます。</small></div></li>
             <li><div><b>プロジェクト内の入力欄からチャットを始める</b><small>既存のチャットも、チャットのメニューから「プロジェクトに追加」で移せます。</small></div></li>
@@ -565,20 +589,20 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
           <div class="mini" aria-label="プロジェクト画面の再現図">
             <div class="proj">
               <div style="display:grid;gap:10px;align-content:start">
-                <h4>会計8週間プログラム</h4>
+                <h4>新人研修プログラム</h4>
                 <div class="composer" style="padding:10px"><div class="ph" style="font-size:12.5px">このプロジェクトで質問する…</div></div>
                 <div>
-                  <div class="chatrow">Week 3 限界利益の演習<small>2日前</small></div>
-                  <div class="chatrow">三表連動表の自己採点<small>1週間前</small></div>
-                  <div class="chatrow" style="border:0">用語集の確認テスト<small>2週間前</small></div>
+                  <div class="chatrow">第3回 研修資料の作成<small>2日前</small></div>
+                  <div class="chatrow">理解度テストの問題案<small>1週間前</small></div>
+                  <div class="chatrow" style="border:0">受講者アンケートの集計<small>2週間前</small></div>
                 </div>
               </div>
               <div style="display:grid;gap:10px;align-content:start">
                 <div class="panel"><div class="ph"><span>指示</span><svg class="i"><use href="#i-pen"/></svg></div><div style="font-size:12px;color:var(--ink-2)">経営者目線で、結論→根拠→確認事項の順に回答する。</div></div>
                 <div class="panel"><div class="ph"><span>ファイル</span><svg class="i"><use href="#i-plus"/></svg></div>
-                  <div class="file"><span class="ext">MD</span>CURRICULUM.md</div>
-                  <div class="file"><span class="ext">MD</span>GLOSSARY.md</div>
-                  <div class="file"><span class="ext">PDF</span>候補者ケース.pdf</div>
+                  <div class="file"><span class="ext">DOCX</span>研修カリキュラム.docx</div>
+                  <div class="file"><span class="ext">XLSX</span>用語集.xlsx</div>
+                  <div class="file"><span class="ext">PDF</span>過去の研修資料.pdf</div>
                 </div>
               </div>
             </div>
@@ -602,10 +626,10 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
                 <div class="arthead">部門別粗利の比較 <span class="seg"><span class="on">プレビュー</span><span>コード</span></span><span class="sp"></span><span class="ab"><svg class="i"><use href="#i-copy"/></svg>コピー</span><span class="ab pub"><svg class="i"><use href="#i-share"/></svg>公開</span></div>
                 <div class="artbody">
                   <div class="h">部門別 粗利（百万円）</div>
-                  <div class="bar-row"><span>人材紹介</span><i style="width:92%"></i><b>46.0</b></div>
-                  <div class="bar-row"><span>派遣</span><i style="width:61%"></i><b>30.5</b></div>
-                  <div class="bar-row"><span>コンサル</span><i style="width:38%"></i><b>19.0</b></div>
-                  <div class="bar-row"><span>研修</span><i style="width:17%"></i><b>8.5</b></div>
+                  <div class="bar-row"><span>営業一部</span><i style="width:92%"></i><b>46.0</b></div>
+                  <div class="bar-row"><span>営業二部</span><i style="width:61%"></i><b>30.5</b></div>
+                  <div class="bar-row"><span>サービス</span><i style="width:38%"></i><b>19.0</b></div>
+                  <div class="bar-row"><span>その他</span><i style="width:17%"></i><b>8.5</b></div>
                   <p class="caption" style="margin:4px 0 0">※ 数値は説明用のサンプルです</p>
                 </div>
               </div>
@@ -616,7 +640,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
         <ol class="steps">
           <li><div><b>「〜の表を作って」「〜のページを作って」と頼む</b><small>右側にアーティファクトが開きます。閉じても、回答の中のカードを押せば再び開きます。</small></div></li>
           <li><div><b>上部の「プレビュー／コード」で表示を切り替える</b><small>普段は「プレビュー」だけ見れば十分です。</small></div></li>
-          <li><div><b>直したい点を会話で伝える</b><small>「色を落ち着いたものに」「研修部門を削除」など。新しい版が作られ、前の版にも戻れます。</small></div></li>
+          <li><div><b>直したい点を会話で伝える</b><small>「色を落ち着いたものに」「その他を削除」など。新しい版が作られ、前の版にも戻れます。</small></div></li>
           <li><div><b>「コピー」「ダウンロード」「公開」で持ち出す</b><small>「公開」するとリンクで他の人に見せられます。社外に共有する前に内容を確認してください。</small></div></li>
         </ol>
         <p class="caption">作ったものは、サイドバーの「アーティファクト」からいつでも一覧で探せます。</p>
@@ -639,16 +663,16 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
             <h3>スタイル（文体）を切り替える</h3>
             <p>「＋」メニューまたはツールメニューの「スタイルを使用」から、<b>簡潔</b>・<b>説明的</b>・<b>フォーマル</b>などを選べます。自社の文書を見本にしたスタイルも作れます。</p>
             <h3>メモリ（過去の会話の記憶）</h3>
-            <p>「設定」→「機能」などにある <b>メモリ</b> を ON にすると、過去の会話で分かったことを踏まえて答えます。覚えさせたくない場合は OFF にするか、<a href="#overview">14 シークレットチャット</a> を使います。</p>
+            <p>「設定」内の <b>メモリ</b> を ON にすると、過去の会話で分かったことを踏まえて答えます。覚えさせたくない場合は OFF にするか、<a href="#overview">14 シークレットチャット</a> を使います。</p>
           </div>
           <div class="win" aria-label="設定画面の再現図">
             <div class="titlebar"><div class="dots"><i></i><i></i><i></i></div><span style="margin-inline:auto;color:var(--muted);font-size:12px">設定</span><div class="right"></div></div>
             <div class="settings">
-              <div class="snav"><span class="on">一般</span><span>アカウント</span><span>プライバシー</span><span>請求</span><span>機能</span><span>コネクタ</span><span>デスクトップ</span></div>
+              <div class="snav"><span class="on">一般</span><span>アカウント</span><span>プライバシー</span><span>請求</span><span>機能</span><span>コネクタ</span></div>
               <div class="sbody">
-                <div class="field"><label>Claude に何と呼ばれたいですか？</label><div class="box">有那</div></div>
-                <div class="field"><label>あなたの仕事内容</label><div class="box">アドバイザー（人材・経営支援）</div></div>
-                <div class="field"><label>個人設定：Claude が回答で考慮すべきこと</label><div class="box">・「メールを作成して」と頼んだら、送信せず下書き保存する<br>・署名は会社の既定の署名で統一<br>・IT の説明は非エンジニア向けに、専門用語に補足を付ける</div></div>
+                <div class="field"><label>Claude に何と呼ばれたいですか？</label><div class="box">太郎</div></div>
+                <div class="field"><label>あなたの仕事内容</label><div class="box">営業企画</div></div>
+                <div class="field"><label>個人設定：Claude が回答で考慮すべきこと</label><div class="box">・「メールを作成して」と頼んだら、送信せず下書き保存する<br>・署名は会社の既定の署名で統一<br>・専門用語には平易な補足を付ける</div></div>
               </div>
             </div>
           </div>
@@ -693,6 +717,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
         <div class="sec-no">10</div>
         <h2>チャット／Cowork／Code</h2>
         <p class="intro">画面上部の切り替えで、Claude の働き方を選びます。迷ったら「チャット」で十分です。</p>
+        <p class="caption" style="margin-top:-12px">※ 一部のプランでは「チャット」と「Cowork」が統合され、お願いの内容に応じて Claude が自動で使い分ける画面に順次切り替わっています。その場合、選択肢は表示されません。</p>
         <div class="modecards">
           <div class="modecard"><span class="tag">CHAT</span><b>チャット</b><p>会話で相談・文章作成・要約・調べものをします。最も基本の使い方です。</p><div class="ex">例：提案書の構成を考える、メール文面を整える</div></div>
           <div class="modecard"><span class="tag">COWORK</span><b>Cowork（コワーク）</b><p>PC の中のファイルやフォルダを扱いながら、複数の手順がある作業を任せます。途中経過を見ながら進めてくれます。</p><div class="ex">例：フォルダ内の請求書 PDF を読み、一覧表にまとめる</div></div>
@@ -705,14 +730,14 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       <section id="keys">
         <div class="sec-no">11</div>
         <h2>便利なショートカット</h2>
-        <p class="intro">よく使う操作だけを挙げます。割り当ては「設定」→「デスクトップ」で確認・変更できます。</p>
+        <p class="intro">よく使う操作だけを挙げます。クイック入力の割り当ては「設定」→「一般」の「デスクトップアプリ」欄で変更できます。</p>
         <div class="tbl">
           <table>
             <thead><tr><th>操作</th><th>Mac</th><th>Windows</th></tr></thead>
             <tbody>
               <tr><td>送信</td><td><kbd>Enter</kbd></td><td><kbd>Enter</kbd></td></tr>
               <tr><td>入力欄で改行</td><td><kbd>Shift</kbd>＋<kbd>Enter</kbd></td><td><kbd>Shift</kbd>＋<kbd>Enter</kbd></td></tr>
-              <tr><td>クイック入力（どの画面からでも呼び出す）</td><td><kbd>Option</kbd> を2回</td><td>設定で割り当て</td></tr>
+              <tr><td>クイック入力（どの画面からでも呼び出す）</td><td><kbd>Option</kbd> を2回（<kbd>Option</kbd>＋<kbd>Space</kbd> などに変更可）</td><td>設定で割り当てを確認</td></tr>
               <tr><td>設定を開く</td><td><kbd>⌘</kbd>＋<kbd>,</kbd></td><td>アカウントメニューから</td></tr>
             </tbody>
           </table>
@@ -728,7 +753,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
           <table>
             <thead><tr><th>項目</th><th>守ること</th></tr></thead>
             <tbody>
-              <tr><td>個人情報・機密</td><td>候補者・顧客の氏名、連絡先、機微な数値は必要がなければ伏せる。社内ルールで扱えない情報は入力しない。</td></tr>
+              <tr><td>個人情報・機密</td><td>お客様・取引先の氏名、連絡先、機密性の高い数値は必要がなければ伏せる。貴社の情報管理ルールで扱えない情報は入力しない。</td></tr>
               <tr><td>内容の確認</td><td>数字・法律・固有名詞は誤りが混じることがあります。社外に出す前に必ず人が確認する。</td></tr>
               <tr><td>送信・公開・削除</td><td>メール送信、アーティファクト公開、ファイル削除などは、確認画面を読んでから許可する。</td></tr>
               <tr><td>共有リンク</td><td>共有したリンクは、リンクを知っている人が見られます。不要になったら共有を停止する。</td></tr>
@@ -741,14 +766,14 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       <section id="faq">
         <div class="sec-no">13</div>
         <h2>困ったとき</h2>
-        <details><summary>回答が途中で止まった</summary><div class="a">「続けて」と送ると続きを書きます。長い成果物は「まず目次だけ」「1章ずつ」と分けて頼むと安定します。</div></details>
-        <details><summary>ボタンやメニューが見当たらない</summary><div class="a">アプリが古い可能性があります。メニューバーの「Claude」→「アップデートを確認」（Windows はアカウントメニュー内）で更新してください。プランや会社の管理設定により表示されない機能もあります。</div></details>
-        <details><summary>前の話題に引っ張られた回答になる</summary><div class="a">新規チャットで始め直してください。必要な前提は、プロジェクトの「指示」や個人設定に書いておくと毎回伝える手間が省けます。</div></details>
-        <details><summary>Gmail やカレンダーの情報を使ってくれない</summary><div class="a">ツールボタンでそのサービスが ON になっているか確認してください。OFF のままだと参照しません。接続が切れている場合は「設定」→「コネクタ」で再接続します。</div></details>
-        <details><summary>「利用上限に達しました」と表示された</summary><div class="a">一定時間内に使える量の上限です。表示された時刻まで待つか、長い会話を新規チャットに分けると消費を抑えられます。</div></details>
+        <details open><summary>回答が途中で止まった</summary><div class="a">「続けて」と送ると続きを書きます。長い成果物は「まず目次だけ」「1章ずつ」と分けて頼むと安定します。</div></details>
+        <details open><summary>ボタンやメニューが見当たらない</summary><div class="a">アプリが古い可能性があります。メニューバーの「Claude」→「アップデートを確認」（Windows はアカウントメニュー内）で更新してください。プランや会社の管理設定により表示されない機能もあります。</div></details>
+        <details open><summary>前の話題に引っ張られた回答になる</summary><div class="a">新規チャットで始め直してください。必要な前提は、プロジェクトの「指示」や個人設定に書いておくと毎回伝える手間が省けます。</div></details>
+        <details open><summary>Gmail やカレンダーの情報を使ってくれない</summary><div class="a">ツールボタンでそのサービスが ON になっているか確認してください。OFF のままだと参照しません。接続が切れている場合は「設定」→「コネクタ」で再接続します。</div></details>
+        <details open><summary>「利用上限に達しました」と表示された</summary><div class="a">一定時間内に使える量の上限です。表示された時刻まで待つか、長い会話を新規チャットに分けると消費を抑えられます。</div></details>
       </section>
 
-      <footer>この手順書の図は、Claude デスクトップアプリの画面を説明用に再現したものです。実際の表示と異なる場合は、実際の画面を優先してください。</footer>
+      <footer>本資料はレイテクソリューションズ株式会社が独自に作成した利用ガイドであり、Anthropic 社の公式資料ではありません。Claude は Anthropic 社の製品です。図は説明用に再現したもので、機能・表示は 2026年9月時点の情報をもとにしています。アプリの更新やご契約プランにより実際の画面と異なる場合は、実際の画面を優先してください。</footer>
     </main>
   </div>
 </div>
