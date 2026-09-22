@@ -253,6 +253,11 @@ summary::-webkit-details-marker{display:none}
 details[open] summary{border-bottom:1px solid var(--line)}
 details .a{padding:10px 0 14px;color:var(--ink-2);font-size:14px}
 
+.setgrid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+.setgrid .win{max-width:620px}
+.settbl td{font-size:13.5px;line-height:1.65}
+.settbl td:first-child{white-space:nowrap}
+.settbl td small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted);font-weight:400}
 .print-only{display:none}
 .caption{font-size:12px;color:var(--muted);margin-top:8px}
 footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:12.5px}
@@ -269,12 +274,15 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
   .scroll{overflow:visible}
   .win,.mini,.steps>li,.legend li,tr,details,.note,.modecard,.tasks li,figure{break-inside:avoid}
   h2,h3,.sec-no,.intro{break-after:avoid}
-  #overview,#first,#files,#model,#tools,#projects,#artifacts,#settings,#manage,#modes,#rules{break-before:page}
+  #overview,#first,#files,#model,#tools,#projects,#artifacts,#settings,#prefs,#manage,#modes,#rules{break-before:page}
   section+section{border-top:0}
   .legend a,.tasks a span{color:var(--muted)}
   a{text-decoration:none}
   .screen-only,.legend a{display:none}
   .print-only{display:inline}
+  .settbl td,.settbl th{padding:6px 10px;font-size:12.5px;line-height:1.5}
+  #settings .settings .snav span{padding:3px 10px}
+  #settings .settings{min-height:0}
   .legend{margin-top:14px}
   .legend li{padding:3px 10px}
   .legend span.d{line-height:1.55}
@@ -307,6 +315,8 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
   html.ls #artifacts>h3{grid-column:2;grid-row:4;margin-top:0}
   html.ls #artifacts>.steps{grid-column:2;grid-row:5}
   html.ls #artifacts>.caption{grid-column:2;grid-row:6}
+  html.ls .setgrid{grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:28px;align-items:start}
+  html.ls .settbl td,html.ls .settbl th{padding:6px 10px;font-size:12.5px;line-height:1.5}
   html.ls #keys{break-before:auto;border-top:0;padding-top:28px}
   html.ls #faq{break-before:page}
   html.ls #faq details{display:inline-block;width:calc(50% - 6px);vertical-align:top;margin:0 0 8px}
@@ -366,7 +376,8 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
         <li><a href="#tools">検索・リサーチ・外部サービス連携</a></li>
         <li><a href="#projects">プロジェクト</a></li>
         <li><a href="#artifacts">アーティファクト</a></li>
-        <li><a href="#settings">個人設定・スタイル・メモリ</a></li>
+        <li><a href="#settings">設定画面の各項目</a></li>
+        <li><a href="#prefs">Claude への指示・メモリ</a></li>
         <li><a href="#manage">チャットの整理と共有</a></li>
         <li><a href="#modes">チャット／Cowork／Code</a></li>
         <li><a href="#keys">便利なショートカット</a></li>
@@ -388,7 +399,8 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
           <li><a href="#tools">メールや予定を扱いたい<span>Gmail・カレンダー・ドライブ連携</span></a></li>
           <li><a href="#projects">同じ資料で何度も相談したい<span>プロジェクトにまとめる</span></a></li>
           <li><a href="#artifacts">表・資料・ページを作らせたい<span>アーティファクト</span></a></li>
-          <li><a href="#settings">毎回同じ指示を書くのが面倒<span>個人設定に登録</span></a></li>
+          <li><a href="#prefs">毎回同じ指示を書くのが面倒<span>「Claude への指示」に登録</span></a></li>
+          <li><a href="#settings">設定で何ができるか知りたい<span>設定画面の各項目</span></a></li>
           <li><a href="#manage">過去のやり取りを探したい<span>検索・スター・名前変更</span></a></li>
           <li><a href="#modes">PC 上の作業を任せたい<span>Cowork モード</span></a></li>
         </ul>
@@ -578,7 +590,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
           <div>
             <h3 style="margin-top:0">ウェブ検索・リサーチを使う</h3>
             <ol class="steps">
-              <li><div><b>ツールボタンを押し、「ウェブ検索」を ON</b><small>最新のニュースや料金など、ネット上の情報を調べて答えます。出典のリンクが付きます。</small></div></li>
+              <li><div><b>ツールボタンを押し、「ウェブ検索」を ON</b><small>最新のニュースや料金など、ネット上の情報を調べて答えます。出典のリンクが付きます。新しい画面に切り替わったプランでは切り替えがなく、必要なときに Claude が自動で検索します。</small></div></li>
               <li><div><b>時間をかけて調べさせたいときは「リサーチ」を ON</b><small>複数のサイトを数分〜十数分かけて読み比べ、レポートにまとめます。</small></div></li>
             </ol>
             <h3>Gmail・カレンダー・ドライブと連携する（初回のみ設定）</h3>
@@ -599,7 +611,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
               <hr>
               <div class="mi"><svg class="i"><use href="#i-plus"/></svg>コネクタを追加・管理<em>設定へ</em></div>
             </div>
-            <div class="note tip" style="margin:0"><strong>メールは「下書き」で止める</strong>「メールを作成して」と頼むときは「送信せず下書きに保存して」と書き添えるか、個人設定に登録しておくと安心です（<a href="#settings">08</a> 参照）。</div>
+            <div class="note tip" style="margin:0"><strong>メールは「下書き」で止める</strong>「メールを作成して」と頼むときは「送信せず下書きに保存して」と書き添えるか、「Claude への指示」に登録しておくと安心です（<a href="#prefs">09</a> 参照）。</div>
           </div>
         </div>
         <div class="note warn"><strong>送信・削除・予定登録などの操作</strong>外部サービスに変更を加える操作では、実行前に確認画面が出ます。内容を読んでから「許可」を押してください。</div>
@@ -681,39 +693,74 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       <!-- 8 -->
       <section id="settings">
         <div class="sec-no">08</div>
-        <h2>個人設定・スタイル・メモリ</h2>
-        <p class="intro">毎回書いている前提（所属、署名、書き方の好み）は、設定に一度登録すれば全チャットに反映されます。</p>
-        <div class="twocol">
-          <div>
-            <h3 style="margin-top:0">個人設定を登録する</h3>
-            <ol class="steps">
-              <li><div><b>左下のアカウント名 →「設定」</b><small>Mac では <kbd>⌘</kbd>＋<kbd>,</kbd> でも開けます。</small></div></li>
-              <li><div><b>「一般」で呼び名と職種を入力</b></div></li>
-              <li><div><b>「個人設定」欄に、いつも守ってほしいルールを書く</b><small>例：メールは送信せず下書き保存／署名はこの形式／専門用語は平易に言い換える。</small></div></li>
-              <li><div><b>保存して、新しいチャットで確かめる</b></div></li>
-            </ol>
-            <h3>スタイル（文体）を切り替える</h3>
-            <p>「＋」メニューまたはツールメニューの「スタイルを使用」から、<b>簡潔</b>・<b>説明的</b>・<b>フォーマル</b>などを選べます。自社の文書を見本にしたスタイルも作れます。</p>
-            <h3>メモリ（過去の会話の記憶）</h3>
-            <p>「設定」内の <b>メモリ</b> を ON にすると、過去の会話で分かったことを踏まえて答えます。覚えさせたくない場合は OFF にするか、<a href="#overview">14 シークレットチャット</a> を使います。</p>
-          </div>
+        <h2>設定画面の各項目</h2>
+        <p class="intro">左下の自分の名前 →「設定」で開きます。左の一覧で項目を選ぶと、右側に内容が表示されます。画面が英語の場合に備えて、英語での表記も併記しています。</p>
+        <div class="setgrid">
           <div class="win" aria-label="設定画面の再現図">
             <div class="titlebar"><div class="dots"><i></i><i></i><i></i></div><span style="margin-inline:auto;color:var(--muted);font-size:12px">設定</span><div class="right"></div></div>
             <div class="settings">
-              <div class="snav"><span class="on">一般</span><span>アカウント</span><span>プライバシー</span><span>請求</span><span>機能</span><span>コネクタ</span></div>
+              <div class="snav"><span class="on">一般</span><span>外観</span><span>アカウント</span><span>プライバシー</span><span>請求</span><span>使用量</span><span>機能</span><span>メモリ</span><span>コネクタ</span><span>拡張機能</span><span>開発者</span></div>
               <div class="sbody">
-                <div class="field"><label>Claude に何と呼ばれたいですか？</label><div class="box">太郎</div></div>
-                <div class="field"><label>あなたの仕事内容</label><div class="box">営業企画</div></div>
-                <div class="field"><label>個人設定：Claude が回答で考慮すべきこと</label><div class="box">・「メールを作成して」と頼んだら、送信せず下書き保存する<br>・署名は会社の既定の署名で統一<br>・専門用語には平易な補足を付ける</div></div>
+                <div class="field"><label>Claude への指示</label><div class="box">・「メールを作成して」と頼んだら、送信せず下書き保存する<br>・署名は会社の既定の署名で統一<br>・専門用語には平易な補足を付ける</div></div>
+                <div class="field"><label>デスクトップアプリ：クイックアクセスのショートカット</label><div class="box" style="display:flex;justify-content:space-between;align-items:center">Option キーを2回押す <svg class="i"><use href="#i-down"/></svg></div></div>
+                <div class="field"><label>デスクトップアプリ：音声入力のショートカット</label><div class="box" style="display:flex;justify-content:space-between;align-items:center">オフ <svg class="i"><use href="#i-down"/></svg></div></div>
               </div>
             </div>
+          </div>
+          <div class="tbl">
+            <table class="settbl">
+              <thead><tr><th>項目</th><th>ここでできること</th><th>おすすめ・注意</th></tr></thead>
+              <tbody>
+                <tr><td>一般<small>General</small></td><td>「Claude への指示」（すべての会話で守ってほしいルール）の登録。デスクトップ版では、クイック入力・音声入力のショートカットもここで変更。</td><td>会社のルールや文章の好みを書いておくと、毎回の説明が不要に（<a href="#prefs">09</a>）。</td></tr>
+                <tr><td>外観<small>Appearance</small></td><td>画面の色（ライト／ダーク／システムに合わせる）と、会話の文字の書体（標準／システムに合わせる／読みやすさ重視の書体）。</td><td>好みで選んで問題ありません。</td></tr>
+                <tr><td>アカウント<small>Account</small></td><td>名前・メールアドレスの確認、ログアウト、アカウントの削除。</td><td>削除すると過去の会話は戻せません。</td></tr>
+                <tr><td>プライバシー<small>Privacy</small></td><td>会話を Claude の性能改善（学習）に使ってよいかの選択、会話データの書き出し。</td><td>個人プランでは方針を確認して選択。Team／Enterprise プランは会社側の契約・設定が優先されます。</td></tr>
+                <tr><td>請求<small>Billing</small></td><td>契約プラン、支払い方法、請求書の確認。</td><td>Team プランでは管理者だけが変更できます。</td></tr>
+                <tr><td>使用量<small>Usage</small></td><td>利用上限に対して、どのくらい使ったかの確認。</td><td>「利用上限」の表示が出たときに確認します。</td></tr>
+                <tr><td>機能<small>Capabilities</small></td><td>「コード実行とファイル作成」など、Claude が使える機能の ON/OFF。</td><td>アーティファクトや Excel・資料の作成に必要なため ON 推奨。Team では管理者の設定が優先。</td></tr>
+                <tr><td>メモリ<small>Memory</small></td><td>過去の会話を検索・参照するか、会話の内容を記憶として残すか。</td><td>表示場所が「機能」の中にある場合もあります。</td></tr>
+                <tr><td>コネクタ<small>Connectors</small></td><td>Gmail・Google カレンダー・Google ドライブなど外部サービスの接続と解除（<a href="#tools">05</a>）。</td><td>使うサービスだけを接続します。</td></tr>
+                <tr><td>拡張機能<small>Extensions</small></td><td>PC 内のアプリやツールと連携する拡張機能の追加（デスクトップ版のみ）。</td><td>会社が許可したものだけを追加します。</td></tr>
+                <tr><td>開発者<small>Developer</small></td><td>技術者向けの接続状態・記録（ログ）の確認。</td><td>通常は操作不要です。</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="caption">※ 表示される項目は、ご契約プラン・アプリのバージョン・会社の管理設定によって異なります。Team／Enterprise プランでは、一部の項目を会社の管理者が決めています。</p>
+      </section>
+
+      <!-- 8b -->
+      <section id="prefs">
+        <div class="sec-no">09</div>
+        <h2>Claude への指示・スタイル・メモリ</h2>
+        <p class="intro">毎回書いている前提（所属、署名、書き方の好み）は、設定に一度登録すれば、すべての会話に反映されます。</p>
+        <div class="twocol">
+          <div>
+            <h3 style="margin-top:0">「Claude への指示」を登録する</h3>
+            <ol class="steps">
+              <li><div><b>左下の自分の名前 →「設定」を開く</b></div></li>
+              <li><div><b>「一般」の「Claude への指示」欄を探す</b><small>英語表記では「Instructions for Claude」。</small></div></li>
+              <li><div><b>いつも守ってほしいルールを書く</b><small>例：メールは送信せず下書き保存／署名はこの形式／専門用語は平易に言い換える。</small></div></li>
+              <li><div><b>保存して、新しいチャットで確かめる</b><small>特定の案件だけのルールは、プロジェクトの「指示」に書きます（<a href="#projects">06</a>）。</small></div></li>
+            </ol>
+            <h3>スタイル（文体）を切り替える</h3>
+            <p>入力欄の「＋」メニューなどにある「スタイル」から、<b>簡潔</b>・<b>説明的</b>・<b>フォーマル</b>などを選べます。自社の文書を見本にしたスタイルも作れます。</p>
+          </div>
+          <div>
+            <h3 style="margin-top:0">メモリ（過去の会話の記憶）を使う・止める</h3>
+            <ol class="steps">
+              <li><div><b>「設定」→「メモリ」を開く</b><small>見当たらない場合は「機能」の中にあります。</small></div></li>
+              <li><div><b>「チャットの検索と参照」を ON／OFF</b><small>ON にすると、以前の会話を探して踏まえた回答をします（有料プラン）。</small></div></li>
+              <li><div><b>会話から記憶を作る設定を ON／OFF</b><small>ON にすると、会話で分かったこと（担当業務、好みなど）を覚えて次に生かします。</small></div></li>
+            </ol>
+            <div class="note tip"><strong>一度だけ記憶に残したくないとき</strong>設定を変えずに、<a href="#overview">シークレットチャット</a>（画面右上のアイコン）で会話を始めます。</div>
           </div>
         </div>
       </section>
 
       <!-- 9 -->
       <section id="manage">
-        <div class="sec-no">09</div>
+        <div class="sec-no">10</div>
         <h2>チャットの整理と共有</h2>
         <p class="intro">会話の画面上部にあるタイトルを押すと、整理用のメニューが出ます。</p>
         <div class="twocol">
@@ -746,7 +793,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
 
       <!-- 10 -->
       <section id="modes">
-        <div class="sec-no">10</div>
+        <div class="sec-no">11</div>
         <h2>チャット／Cowork／Code</h2>
         <p class="intro">画面上部の切り替えで、Claude の働き方を選びます。迷ったら「チャット」で十分です。</p>
         <p class="caption" style="margin-top:-12px">※ 一部のプランでは「チャット」と「Cowork」が統合され、お願いの内容に応じて Claude が自動で使い分ける画面に順次切り替わっています。その場合、選択肢は表示されません。</p>
@@ -760,7 +807,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
 
       <!-- 11 -->
       <section id="keys">
-        <div class="sec-no">11</div>
+        <div class="sec-no">12</div>
         <h2>便利なショートカット</h2>
         <p class="intro">よく使う操作だけを挙げます。クイック入力の割り当ては「設定」→「一般」の「デスクトップアプリ」欄で変更できます。</p>
         <div class="tbl">
@@ -770,7 +817,6 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
               <tr><td>送信</td><td><kbd>Enter</kbd></td><td><kbd>Enter</kbd></td></tr>
               <tr><td>入力欄で改行</td><td><kbd>Shift</kbd>＋<kbd>Enter</kbd></td><td><kbd>Shift</kbd>＋<kbd>Enter</kbd></td></tr>
               <tr><td>クイック入力（どの画面からでも呼び出す）</td><td><kbd>Option</kbd> を2回（<kbd>Option</kbd>＋<kbd>Space</kbd> などに変更可）</td><td>設定で割り当てを確認</td></tr>
-              <tr><td>設定を開く</td><td><kbd>⌘</kbd>＋<kbd>,</kbd></td><td>アカウントメニューから</td></tr>
             </tbody>
           </table>
         </div>
@@ -779,7 +825,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
 
       <!-- 12 -->
       <section id="rules">
-        <div class="sec-no">12</div>
+        <div class="sec-no">13</div>
         <h2>使うときの注意</h2>
         <div class="tbl">
           <table>
@@ -796,11 +842,11 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
 
       <!-- 13 -->
       <section id="faq">
-        <div class="sec-no">13</div>
+        <div class="sec-no">14</div>
         <h2>困ったとき</h2>
         <details open><summary>回答が途中で止まった</summary><div class="a">「続けて」と送ると続きを書きます。長い成果物は「まず目次だけ」「1章ずつ」と分けて頼むと安定します。</div></details>
-        <details open><summary>ボタンやメニューが見当たらない</summary><div class="a">アプリが古い可能性があります。メニューバーの「Claude」→「アップデートを確認」（Windows はアカウントメニュー内）で更新してください。プランや会社の管理設定により表示されない機能もあります。</div></details>
-        <details open><summary>前の話題に引っ張られた回答になる</summary><div class="a">新規チャットで始め直してください。必要な前提は、プロジェクトの「指示」や個人設定に書いておくと毎回伝える手間が省けます。</div></details>
+        <details open><summary>ボタンやメニューが見当たらない</summary><div class="a">アプリが古い可能性があります。アプリを最新版に更新してください。プランや会社の管理設定により表示されない機能もあります。</div></details>
+        <details open><summary>前の話題に引っ張られた回答になる</summary><div class="a">新規チャットで始め直してください。必要な前提は、プロジェクトの「指示」や「Claude への指示」に書いておくと毎回伝える手間が省けます。</div></details>
         <details open><summary>Gmail やカレンダーの情報を使ってくれない</summary><div class="a">ツールボタンでそのサービスが ON になっているか確認してください。OFF のままだと参照しません。接続が切れている場合は「設定」→「コネクタ」で再接続します。</div></details>
         <details open><summary>「利用上限に達しました」と表示された</summary><div class="a">一定時間内に使える量の上限です。表示された時刻まで待つか、長い会話を新規チャットに分けると消費を抑えられます。</div></details>
       </section>
