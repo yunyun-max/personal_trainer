@@ -102,7 +102,8 @@
 - templates/final-rubric.md：最終評価基準
 - progress.md：進捗記録
 - docs/claude-desktop-guide.html：Claudeデスクトップアプリの使い方手順書（社外共有可）
-- docs/claude-desktop-guide.pdf：同手順書のPDF版（A4）
+- docs/claude-desktop-guide.pdf：同手順書のPDF版（A4縦・印刷向け）
+- docs/claude-desktop-guide-landscape.pdf：同手順書のPDF版（A4横・画面表示向け）
 
 ## 情報管理
 

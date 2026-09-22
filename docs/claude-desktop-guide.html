@@ -279,6 +279,38 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
   .legend li{padding:3px 10px}
   .legend span.d{line-height:1.55}
 }
+
+/* ---------- 横向き版（PDF 用。html に class="ls" を付けて印刷） ---------- */
+@media print{
+  html.ls section{break-before:page;padding-block:0}
+  html.ls #tasks{break-before:auto}
+  html.ls .masthead{padding-block:24px 28px;margin-bottom:28px}
+  html.ls h1{font-size:46px}
+  html.ls .lede{max-width:52em}
+  html.ls .intro{max-width:none;margin-bottom:18px}
+  html.ls .twocol{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:40px}
+  html.ls .tasks{grid-template-columns:repeat(3,minmax(0,1fr))}
+  html.ls #overview,html.ls #artifacts{display:grid;column-gap:32px;align-items:start}
+  html.ls #overview>.sec-no,html.ls #overview>h2,html.ls #overview>.intro,
+  html.ls #artifacts>.sec-no,html.ls #artifacts>h2,html.ls #artifacts>.intro{grid-column:1/-1}
+  html.ls #overview{grid-template-columns:780px minmax(0,1fr)}
+  html.ls #overview .legend{display:flex;flex-direction:column}
+  html.ls #overview .legend li[data-k="1"]{order:1}html.ls #overview .legend li[data-k="2"]{order:2}html.ls #overview .legend li[data-k="3"]{order:3}html.ls #overview .legend li[data-k="4"]{order:4}html.ls #overview .legend li[data-k="5"]{order:5}html.ls #overview .legend li[data-k="6"]{order:6}html.ls #overview .legend li[data-k="7"]{order:7}html.ls #overview .legend li[data-k="8"]{order:8}html.ls #overview .legend li[data-k="9"]{order:9}html.ls #overview .legend li[data-k="10"]{order:10}html.ls #overview .legend li[data-k="11"]{order:11}html.ls #overview .legend li[data-k="12"]{order:12}html.ls #overview .legend li[data-k="13"]{order:13}html.ls #overview .legend li[data-k="14"]{order:14}html.ls #overview .legend li[data-k="15"]{order:15}
+  html.ls #overview>.scroll{grid-column:1;grid-row:4}
+  html.ls #overview>.caption{grid-column:1;grid-row:5}
+  html.ls #overview>.legend{grid-column:2;grid-row:4/span 2;grid-template-columns:minmax(0,1fr);margin:0;gap:0}
+  html.ls #overview .legend li{padding:2px 6px}
+  html.ls #overview .legend b{font-size:13.5px;line-height:1.45}
+  html.ls #overview .legend span.d{font-size:12.5px;line-height:1.45}
+  html.ls #artifacts{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+  html.ls #artifacts>.scroll{grid-column:1;grid-row:4/span 3}
+  html.ls #artifacts>h3{grid-column:2;grid-row:4;margin-top:0}
+  html.ls #artifacts>.steps{grid-column:2;grid-row:5}
+  html.ls #artifacts>.caption{grid-column:2;grid-row:6}
+  html.ls #keys{break-before:auto;border-top:0;padding-top:28px}
+  html.ls #faq{break-before:page}
+  html.ls #faq details{display:inline-block;width:calc(50% - 6px);vertical-align:top;margin:0 0 8px}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
