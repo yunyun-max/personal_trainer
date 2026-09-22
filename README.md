@@ -101,6 +101,7 @@
 - templates/risk-control-matrix.md：内部統制演習
 - templates/final-rubric.md：最終評価基準
 - progress.md：進捗記録
+- docs/claude-desktop-guide.html：Claudeデスクトップアプリの使い方手順書
 
 ## 情報管理
 
